@@ -1,0 +1,26 @@
+# Node (from create-react-app)
+/node_modules
+/.pnp
+.pnp.js
+/package-lock.json
+/npm-debug.log*
+/yarn-debug.log*
+/yarn-error.log*
+/.eslintcache
+/build
+
+# Django
+*.pyc
+__pycache__/
+*.log
+*.pot
+*.py[co]
+*~
+db.sqlite3
+migrations/
+
+# Virtual Environment
+venv/
+
+# Miscellaneous
+.DS_Store
