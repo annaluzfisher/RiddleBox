@@ -11,7 +11,7 @@ import json
 
 
 from serverless_wsgi import handle_request
-from your_project_name.wsgi import application
+from RiddleBox.wsgi import application
 
 def main(event, context):
     return handle_request(application, event, context)
