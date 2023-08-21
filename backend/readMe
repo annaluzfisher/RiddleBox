@@ -1,0 +1,7 @@
+useful python commands and suggested aliases:
+alias runserver="python manage.py runserver"
+alias dbmigrate="python manage.py migrate"
+alias dbgmigrations="python manage.py makemigrations"
+alias dbshell="python manage.py dbshell"
+alias createsuperuser="python manage.py createsuperuser"
+alias pipinstall="pip install -r requirements.txt" 
