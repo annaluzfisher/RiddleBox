@@ -1,0 +1,25 @@
+service: riddle-backend
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.9
+  stage: ${opt:stage, 'dev'}
+  environment:
+    DJANGO_SECRET_KEY: self.custom.DJANGO_SECRET_KEY
+
+custom:
+  stage: 'dev'
+  DJANGO_SECRET_KEY: ${ssm:/${self:provider.stage}/DJANGO_SECRET_KEY}
+
+
+functions:
+  riddle:
+    handler: handler.main
+    events:
+      - http: ANY /
+      - http: 'ANY /{proxy+}'
+
+plugins:
+  - serverless-wsgi
