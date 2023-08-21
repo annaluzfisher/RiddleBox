@@ -4,6 +4,7 @@ frameworkVersion: '3'
 
 provider:
   name: aws
+  profile: riddle
   runtime: python3.9
   stage: ${opt:stage, 'dev'}
   environment:
