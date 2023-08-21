@@ -21,5 +21,5 @@ from users import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/',views.get_users),
-    path('users/<username>',views.get_user)
+    # path('users/<username>',views.get_user)
 ]
