@@ -1,15 +1,7 @@
 import json
-
-
-# def hello(event, context):
-#     body = {
-#         "message": "Go Serverless v3.0! Your function executed successfully!",
-#         "input": event,
-#     }
-
-#     return {"statusCode": 200, "body": json.dumps(body)}
-
-
+import sys
+sys.path.append("/var/task/")
+import unzip_requirements
 from serverless_wsgi import handle_request
 from RiddleBox.wsgi import application
 

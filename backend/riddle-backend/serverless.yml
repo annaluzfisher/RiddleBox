@@ -24,7 +24,7 @@ custom:
   pythonRequirements:
     dockerizePip: non-linux
     zip: true
-    fileName: requirements.txt
+    fileName: ../requirements.txt
   DJANGO_SECRET_KEY: ${ssm:/${self:provider.stage}/DJANGO_SECRET_KEY}
   wsgi:
     app: riddle.wsgi.application
@@ -32,7 +32,7 @@ custom:
 
 functions:
   riddle:
-    handler: handler.main
+    handler: ./handler.main
     events:
       - http: ANY /
       - http: 'ANY /{proxy+}'
