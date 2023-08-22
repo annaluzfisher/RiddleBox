@@ -33,7 +33,7 @@ DEBUG = False
 # SECRET_KEY = 'django-insecure-mijc9l7p%g!tl)vwp(r#1r9!0xyq&byt!$wgdiex=-2xq$vu5#'
 
 
-ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['127.0.0.1', 'localhost'])
+ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['127.0.0.1', 'localhost','https://dev.d2ndyzqjt08q1z.amplifyapp.com/','https://main.d2ndyzqjt08q1z.amplifyapp.com/'])
 
 
 # Application definition
