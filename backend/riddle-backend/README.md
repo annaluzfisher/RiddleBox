@@ -81,43 +81,6 @@ serverless plugin install -n serverless-python-requirements
 
 Running the above will automatically add `serverless-python-requirements` to `plugins` section in your `serverless.yml` file and add it as a `devDependency` to `package.json` file. The `package.json` file will be automatically created if it doesn't exist beforehand. Now you will be able to add your dependencies to `requirements.txt` file (`Pipfile` and `pyproject.toml` is also supported but requires additional configuration) and they will be automatically injected to Lambda package during build process. For more details about the plugin's configuration, please refer to [official documentation](https://github.com/UnitedIncome/serverless-python-requirements).
 
-### Install a new dependency
-start virtual environment
-run 
-  pip install <name of dependency>
-run 
-    pip install -r requirements.txt   
-run 
-  pip freeze > requirements.txt
-
-## setting up aws credentials
-go to IAM and in users -> my user -> security credentials
-scroll down and create an acces key for 'local code'
-copy and paste the key and secret key into your .env file like so:
-AWS_ACCESS_KEY_ID = 111111111
-AWS_SECRET_ACCESS_KEY = 222222222222
-in ~ on your terminal run ls -a
-find or create .aws folder
-create a .config file and a .credentials file
-set config to :
-[profile default]
-region=us-east-2
-[profile riddle]
-region = us-east-2
-
-set credentials to:
-[default]
-aws_access_key_id = FOO
-aws_secret_access_key = BAR
-[riddle]
-aws_access_key_id = 111111111111111
-aws_secret_access_key = 22222222222
-
-run in backend folder in project: 
-export AWS_DEFAULT_PROFILE=riddle
-
-to set the default for the project to be riddle for deployments
-this name 'riddle' coming from here is what we have added to the serverless.yml undder profile so the serverless knows what aws account to deploy to
 
 
 
