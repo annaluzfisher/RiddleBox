@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { NextPage } from 'next';
-import '../styles/layout';
 
 
 const Home: NextPage = () => {
