@@ -9,9 +9,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-
           <Component {...pageProps} />
-
       </Hydrate>
     </QueryClientProvider>
   );
