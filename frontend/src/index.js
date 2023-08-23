@@ -2,18 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from './reportWebVitals'; //whats that?
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
 
-    <button className='p-1 rounded-lg tex-center border-2 border-gray-200 animate-pulse'>Click Me!</button>
-    <div className=' h-screen flex justify-center items-center'>
 
-      <App />
+    <App />
 
-    </div>
+
   </React.StrictMode>
 );
 
