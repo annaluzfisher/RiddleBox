@@ -32,8 +32,8 @@
       "@/components/*": [
         "src/components/*"
       ],
-      "@componenets": [
-        "src/componenets"
+      "@components": [
+        "src/components"
       ],
       "@styles/*": [
         "src/styles/*"
