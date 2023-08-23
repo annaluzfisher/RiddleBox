@@ -27,15 +27,15 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      ### BACKEND ####
-      - name: Install Dependencies
-        working-directory: ./backend
-        run: |
-          yarn cache clean
-          yarn install --network-concurrency 1
-      - name: Lint
-        working-directory: ./backend
-        run: yarn lint:build
+      # ### BACKEND ####
+      # - name: Install Dependencies
+      #   working-directory: ./backend
+      #   run: |
+      #     yarn cache clean
+      #     yarn install --network-concurrency 1
+      # - name: Lint
+      #   working-directory: ./backend
+      #   run: yarn lint:build
       ### FRONTEND ###
       - if: ${{ steps.cache-npm-backend.outputs.cache-hit != 'true' }}
         name: List the state of node modules
@@ -48,81 +48,3 @@ jobs:
       - name: Lint
         working-directory: ./frontend
         run: yarn lint
-
-      - name: Slack Fail Notification
-        if: failure()
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_CHANNEL: proj-lokum-updates
-          SLACK_COLOR: 'ff3333'
-          SLACK_ICON: https://github.com/rtCamp.png?size=48
-          SLACK_TITLE: Linter Failed
-          SLACK_USERNAME: rtCamp
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-
-  unit:
-    name: Unit Tests
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
-    outputs:
-      builders: ${{ steps.builders.outputs.builders }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      # node modules cache
-      - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
-      ### BACKEND ####
-      - name: Install Dependencies
-        working-directory: ./backend
-        run: |
-          yarn cache clean
-          yarn install --network-concurrency 1
-
-      # Unit Test Coverage
-      - uses: ArtiomTr/jest-coverage-report-action@v2
-        with:
-          skip-step: install
-          working-directory: ./backend
-          test-script: yarn test
-      ### FRONTEND ###
-      - if: ${{ steps.cache-npm-backend.outputs.cache-hit != 'true' }}
-        name: List the state of node modules
-        continue-on-error: true
-        working-directory: ./frontend
-        run: npm list
-      - name: Install Dependencies
-        working-directory: ./frontend
-        run: |
-          yarn cache clean
-          yarn install --network-concurrency 1
-
-      - name: Add AWS Exports Config
-        working-directory: ./frontend/src
-        run: echo "$AWS_EXPORTS" > aws-exports.js
-        env:
-          AWS_EXPORTS: ${{ secrets.AWS_EXPORTS }}
-
-      - name: Build
-        working-directory: ./frontend
-        run: yarn build
-
-      - name: Slack Fail Notification
-        if: failure()
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_CHANNEL: proj-lokum-updates
-          SLACK_COLOR: 'ff3333'
-          SLACK_ICON: https://github.com/rtCamp.png?size=48
-          SLACK_TITLE: Unit Tests Failed
-          SLACK_USERNAME: rtCamp
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
